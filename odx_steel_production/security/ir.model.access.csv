@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_steel_production,access_steel_production,model_steel_production,,1,1,1,1
+access_steel_production_line,access_steel_production_line,model_steel_production_line,,1,1,1,1
+access_multi_stage_line,access_multi_stage_line,model_multi_stage_line,,1,1,1,1
+
+access_job_order,access_job_order,model_job_order,,1,1,1,1
+access_job_order_line,access_job_order_line,model_job_order_line,,1,1,1,1
+access_job_multi_stage_line,access_job_multi_stage_line,model_job_multi_stage_line,,1,1,1,1
+access_multi_lot_line,access_multi_lot_line,model_multi_lot_line,,1,1,1,1
+access_pro_multi_lot_line,access_pro_multi_lot_line,model_pro_multi_lot_line,,1,1,1,1
