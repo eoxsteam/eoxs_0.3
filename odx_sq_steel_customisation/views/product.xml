@@ -1,0 +1,38 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="product_inherit_template">
+        <field name="name">product.inherit.template</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="product_classificaton" />
+            </xpath>
+            <xpath expr="//page[@name='general_information']" position="after">
+                <page string="Attributes">
+                    <group>
+                        <group>
+                            <group>
+                                <field name="thk_in" attrs="{'invisible': [('product_classificaton', '=', 'rod')]}"/>
+                                <field name="width_in" attrs="{'invisible': [('product_classificaton', '=', 'rod')]}"/>
+                                <field name="cut_l_in" attrs="{'invisible': [('product_classificaton', '=', 'rod')]}"/>
+                                <field name="od_in" attrs="{'invisible': [('product_classificaton', '!=', 'rod')]}"/>
+                                <field name="length_in" attrs="{'invisible': [('product_classificaton', '!=', 'rod')]}"/>
+                                <field name="weight_lb" attrs="{'invisible': [('product_classificaton', '!=', 'rod')]}"/>
+                            </group>
+                            <group>
+                                <field name="thk_mm" invisible="1"/>
+                                <field name="width_mm" invisible="1"/>
+                                <field name="cut_l_mm" invisible="1"/>
+                                <field name="od_mm" invisible="1"/>
+                                <field name="length_mm" invisible="1"/>
+                                <field name="weight_mm" invisible="1"/>
+                            </group>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>
