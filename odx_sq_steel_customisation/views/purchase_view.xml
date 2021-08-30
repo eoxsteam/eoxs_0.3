@@ -162,7 +162,6 @@
                                         <field name="inner_dia"/>
                                         <field name="outer_dia"/>
                                         <field name="heat_number"/>
-
                                     </group>
 
                                     <group>
@@ -189,7 +188,6 @@
                                         <field name="comp_pb"/>
                                         <field name="comp_ca"/>
                                     </group>
-
                                 </group>
                             </form>
                         </field>
@@ -197,9 +195,6 @@
                 </xpath>
             </field>
         </record>
-        <menuitem action="purchase.purchase_rfq" id="menu_purchase_rfq"
-                  parent="purchase.menu_procurement_management"
-                  sequence="0"/>
         <menuitem id="purchase.menu_procurement_management_supplier_name" name="Vendors"
                   parent="purchase.menu_procurement_management"
                   action="account.res_partner_action_supplier" sequence="15"/>

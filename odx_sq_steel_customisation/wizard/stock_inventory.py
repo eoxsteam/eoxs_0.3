@@ -173,8 +173,8 @@ class gen_stock_order(models.TransientModel):
             line = stock_lot_obj.create({
                 'name': str(sequence),
                 'product_id': product_id.id,
-                'sub_category_id': category_id.id,
-                'category_id': category_id.parent_id.id,
+                # 'sub_category_id': category_id.id,
+                'category_id': category_id.id,
                 'company_id': company_id.id or self.env.company.id,
                 'bill_of_lading': bill_lading,
                 'vendor_id': vendor_id.parent_id.id if vendor_id.parent_id else vendor_id.id,
@@ -256,7 +256,6 @@ class gen_stock_order(models.TransientModel):
     def make_stock_line(self, values, stock_id):
         sale_line_obj = self.env['stock.inventory.line']
         location = self.find_location(values.get('location'), values.get('company'))
-        print(location)
         if values.get('default_code'):
             default_code = values.get('default_code')
             if self.check_product(default_code) != None:

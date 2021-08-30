@@ -22,7 +22,7 @@ class UpdatePriceWizard(models.TransientModel):
                              })
                 if rec.price != rec.line_price:
                     message += (
-                            "<p>%s %s from Unit Price %s-->Unit Price %s </p>" % (rec.sub_category_id.name,
+                            "<p>%s %s from Unit Price %s-->Unit Price %s </p>" % (rec.category_id.name,
                                                                                   rec.product_id.name,
                                                                                   rec.line_price, rec.price))
         message += '</html>'

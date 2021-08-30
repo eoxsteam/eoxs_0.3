@@ -85,8 +85,7 @@
                                                                 </td>
 
                                                                 <td style="font-size:11px;" width="12%">
-                                                                    <strong>${line.category_id.name}</strong>/
-                                                                    <strong>${line.sub_category_id.name}</strong>
+                                                                    <strong>${line.category_id.name}</strong>
                                                                 </td>
                                                                 <td style="font-size:11px;" width="15%">
                                                                     <strong>${line.product_id.display_name}</strong>
@@ -95,19 +94,48 @@
                                                                     <strong>Lot</strong>
                                                                     <br/>
                                                                     ${line.lot_id.name}
-                                                                </td>
-                                                                <td style="text-align:center;font-size:11px;"
-                                                                    width="15%">
-                                                                    <strong>Thickness</strong>
                                                                     <br/>
-                                                                    ${(line.thickness_in)}(in)
                                                                 </td>
-                                                                <td style="font-size:11px;" width="13%">
-                                                                    <strong>Width</strong>
-                                                                    <br/>${(line.width_in)}(in)
-                                                                </td>
+                                                                % if line.product_classificaton != 'rod':
+                                                                    <td style="text-align:center;font-size:11px;"
+                                                                        width="15%">
+                                                                        <strong>Thickness</strong>
+                                                                        <br/>
+                                                                        ${(line.thk_in)}(in)
+                                                                    </td>
+                                                                % endif 
+                                                                % if line.product_classificaton != 'rod':
+                                                                    <td style="font-size:11px;" width="13%">
+                                                                        <strong>Width</strong>
+                                                                        <br/>${(line.width_in)}(in)
+                                                                    </td>
+                                                                % endif
+                                                                % if line.product_classificaton != 'rod':
+                                                                    <td style="font-size:11px;" width="13%">
+                                                                        <strong>Cut Length</strong>
+                                                                        <br/>${(line.cut_l_in)}(in)
+                                                                    </td>
+                                                                % endif
+                                                                % if line.product_classificaton == 'rod':
+                                                                    <td style="font-size:11px;" width="13%">
+                                                                        <strong>OD</strong>
+                                                                        <br/>${(line.od_in)}(in)
+                                                                    </td>
+                                                                % endif
+                                                                % if line.product_classificaton == 'rod':
+                                                                    <td style="font-size:11px;" width="13%">
+                                                                        <strong>Length</strong>
+                                                                        <br/>${(line.length_in)}(in)
+                                                                    </td>
+                                                                % endif
+                                                                % if line.product_classificaton == 'rod':
+                                                                    <td style="font-size:11px;" width="13%">
+                                                                        <strong>Weight</strong>
+                                                                        <br/>${(line.weight_lb)}(lb)
+                                                                    </td>
+                                                                % endif
                                                                 <td style="font-size:11px;" width="12%">
-                                                                    <strong>Weight</strong>
+                                                                    <strong>Quantity</strong>
                                                                     <br/>${(line.quantity) | int}
                                                                     ${(line.uom_id.name)}
                                                                 </td>

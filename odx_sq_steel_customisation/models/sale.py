@@ -84,7 +84,7 @@ class SaleOrder(models.Model):
         option_line_list = []
         similar_options = []
         table = ''
-        table += '''<p>The following coils are associated with some orders:                
+        table += '''<p>The following Products are associated with some orders:                
                     </p>
                     <br/>
                     <table class="table table-bordered">
@@ -139,7 +139,7 @@ class SaleOrder(models.Model):
             }
 
         else:
-            table = '''<p>No coils are used in Other orders, You are good to go.               
+            table = '''<p>No Products are used in Other orders, You are good to go.               
                                        </p>'''
             return {
                 'name': _('Similar Options'),
@@ -183,16 +183,16 @@ class SaleOrder(models.Model):
 
     def update_price_on_line(self):
         product_list = []
-        sub_category_list = []
+        category_list = []
         lines = []
 
         for line in self.order_line:
-            if line.sub_category_id.id not in sub_category_list:
-                sub_category_list.append(line.sub_category_id.id)
-        if sub_category_list:
-            for rec in sub_category_list:
+            if line.category_id.id not in category_list:
+                category_list.append(line.category_id.id)
+        if category_list:
+            for rec in category_list:
                 for line in self.order_line:
-                    if line.sub_category_id.id == rec:
+                    if line.category_id.id == rec:
                         if line.product_id.id not in product_list:
                             product_list.append(line.product_id.id)
                             lines.append((0, 0, {
@@ -254,6 +254,16 @@ class SaleOrder(models.Model):
     # thk_in = fields.Float(string='Thickness(in)', digits=[6, 4])
     thk_in = fields.Float(string='Thickness(in)', digits=[6, 4])
     thk_ibt = fields.Float(string='Thickness(in)', digits=[6, 4])
+
+    cut_l_in = fields.Float(string='Cut L(in)',digits=[6, 4])
+    cut_l_ibt = fields.Float(string='Cut L(in)',digits=[6, 4])
+    length_in = fields.Float(string='Length(in)',digits=[6, 4])
+    length_ibt = fields.Float(string='Length(in)',digits=[6, 4])
+    weight_lb = fields.Float(string='Weight(lb)',digits=[6, 4])
+    weight_ibt = fields.Float(string='Weight(lb)',digits=[6, 4])
+    od_in = fields.Float(string='OD(in)',digits=[6, 4])
+    od_ibt = fields.Float(string='OD(in)',digits=[6, 4])
+
     width_operator = fields.Selection([
         ('=', 'Equal'),
         ('>', 'Greater than'), ('>=', 'Greater than or equal to'), ('ibt', 'In Between'),
@@ -262,7 +272,22 @@ class SaleOrder(models.Model):
         ('=', 'Equal'),
         ('>', 'Greater than'), ('>=', 'Greater than or equal to'), ('ibt', 'In Between'),
         ('<', 'Less Than'), ('<=', 'Less than or equal to')], string='Thickness Operator')
-
+    cut_operator = fields.Selection([
+        ('=', 'Equal'),
+        ('>', 'Greater than'), ('>=', 'Greater than or equal to'), ('ibt', 'In Between'),
+        ('<', 'Less Than'), ('<=', 'Less than or equal to')], string='Thickness Operator')
+    length_operator = fields.Selection([
+        ('=', 'Equal'),
+        ('>', 'Greater than'), ('>=', 'Greater than or equal to'), ('ibt', 'In Between'),
+        ('<', 'Less Than'), ('<=', 'Less than or equal to')], string='Thickness Operator')
+    weight_operator = fields.Selection([
+        ('=', 'Equal'),
+        ('>', 'Greater than'), ('>=', 'Greater than or equal to'), ('ibt', 'In Between'),
+        ('<', 'Less Than'), ('<=', 'Less than or equal to')], string='Thickness Operator')
+    od_operator = fields.Selection([
+        ('=', 'Equal'),
+        ('>', 'Greater than'), ('>=', 'Greater than or equal to'), ('ibt', 'In Between'),
+        ('<', 'Less Than'), ('<=', 'Less than or equal to')], string='Thickness Operator')
 
     def action_search_product(self):
         domain = [('stock_status', '=', 'available'), ('loc_warehouse', '=', self.warehouse_id.id)]
@@ -280,7 +305,7 @@ class SaleOrder(models.Model):
                 if not self.thickness_operator == 'ibt':
                     domain.append(('thk_in', self.thickness_operator, self.thk_in))
                 else:
-                    domain.append(('thk_in', '<', self.thickness_ibt))
+                    domain.append(('thk_in', '<', self.thk_ibt))
                     domain.append(('thk_in', '>', self.thk_in))
             if self.width_operator:
                 if not self.width_operator == 'ibt':
@@ -288,6 +313,24 @@ class SaleOrder(models.Model):
                 else:
                     domain.append(('width_in', '<', self.width_ibt))
                     domain.append(('width_in', '>', self.width_in))
+            if self.cut_operator:
+                if not self.cut_operator == 'ibt':
+                    domain.append(('cut_l_in', self.cut_operator, self.cut_l_in))
+                else:
+                    domain.append(('cut_l_in', '<', self.cut_l_ibt))
+                    domain.append(('cut_l_in', '>', self.cut_l_in))
+            if self.length_operator:
+                if not self.length_operator == 'ibt':
+                    domain.append(('length_in', self.length_operator, self.length_in))
+                else:
+                    domain.append(('length_in', '<', self.length_ibt))
+                    domain.append(('length_in', '>', self.length_in))
+            if self.weight_operator:
+                if not self.weight_operator == 'ibt':
+                    domain.append(('weight_kg', self.weight_operator, self.weight_kg))
+                else:
+                    domain.append(('weight_kg', '<', self.weight_ibt))
+                    domain.append(('weight_kg', '>', self.weight_kg))
         else:
             self.action_clear_option_lines()
             domain.append(('name', '=', self.coil_search))
@@ -307,8 +350,13 @@ class SaleOrder(models.Model):
                             # 'sub_category_id': rec.product_id.categ_id.id,
                             'quantity': rec.product_qty,
                             'uom_id': rec.product_uom_id.id,
-                            'thk_in': rec.thk_in,
                             'width_in': rec.width_in,
+                            'thk_in': rec.thk_in,
+                            'cut_l_in': rec.cut_l_in,
+                            'length_in': rec.length_in,
+                            'weight_lb': rec.weight_lb,
+                            'od_in': rec.od_in,
+                            'product_classificaton': rec.product_classificaton,
                             'price_unit': rec.product_id.lst_price,
 
                         })]
@@ -344,17 +392,21 @@ class SaleOrder(models.Model):
                     # 'sub_category_id': line.sub_category_id.id,
                     'product_uom_qty': line.quantity,
                     'product_uom': line.uom_id.id,
-                    'thk_in': line.thk_in,
                     'width_in': line.width_in,
+                    'thk_in': line.thk_in,
+                    'cut_l_in': line.cut_l_in,
+                    'length_in': line.length_in,
+                    'weight_lb': line.weight_lb,
+                    'od_in': line.od_in,
                     'price_unit': line.product_id.lst_price,
-                    'material_type': line.lot_id.material_type
+                    'product_classificaton': line.lot_id.product_classificaton
                 })
                 new_order_line.product_id_change()
 
     def send_optional_products(self):
         self.ensure_one()
 
-        template_id = self.env.ref('odx_product_custom_steel.mail_template_sale_eoxs').id
+        template_id = self.env.ref('odx_sq_steel_customisation.mail_template_sale_eoxs').id
         lang = self.env.context.get('lang')
         template = self.env['mail.template'].browse(template_id)
         if template.lang:
@@ -382,6 +434,12 @@ class SaleOrder(models.Model):
             'target': 'new',
             'context': ctx,
         }
+
+    @api.onchange('product_id')
+    def _domain_lot_id(self):
+        if self.product_id:
+            self.product_classificaton = self.product_id.product_classificaton
+            self.category_id = self.product_id.categ_id.id
 
 
 class SaleOrderLine(models.Model):
@@ -540,6 +598,8 @@ class SaleOrderOption(models.Model):
             products = self.env['product.product'].search([('categ_id', '=', self.category_id.id)])
             product_fields_domain = [('id', 'in', products.ids)]
             return {'domain': {'product_id': product_fields_domain, }}
+        else:
+            return {'domain': {'product_id': []}}
 
     @api.depends('quantity', 'price_unit')
     def _compute_amount(self):
@@ -569,6 +629,11 @@ class SaleOrderOption(models.Model):
             'product_id': self.product_id.id if self.product_id else False,
             'width_in': self.width_in,
             'thk_in': self.thk_in,
+            'cut_l_in': self.cut_l_in,
+            'length_in': self.length_in,
+            'weight_lb': self.weight_lb,
+            'od_in': self.od_in,
+            'product_classificaton': self.product_classificaton,
             'product_uom_qty': self.quantity,
             'product_uom': self.uom_id.id if self.uom_id else False,
             'material_type': self.lot_id.material_type if self.lot_id.material_type else False,
@@ -576,7 +641,7 @@ class SaleOrderOption(models.Model):
             'company_id': self.order_id.company_id.id,
         }
 
-    category_id = fields.Many2one('product.category', string="Product Type", domain="[('parent_id', '=', False)]",
+    category_id = fields.Many2one('product.category', string="Product Type",
                                   readonly=True)
     # sub_category_id = fields.Many2one('product.category', string="Sub Category",
     #                                   domain=lambda self: self._get_category_list(), readonly=True)

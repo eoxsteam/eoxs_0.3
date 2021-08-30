@@ -160,7 +160,7 @@ class StockMove(models.Model):
     offer_id = fields.Many2one('purchase.offer', string='Offers')
     is_select = fields.Boolean(string="Is Select", compute='_onchange_move_line')
     lot_id = fields.Many2one('stock.production.lot', string="Lots")
-    # sub_category_id = fields.Many2one('product.category', string="Sub Category", related='product_id.categ_id')
+    category_id = fields.Many2one('product.category', string="Sub Category", related='product_id.categ_id')
     product_classificaton = fields.Selection([('plate', 'Plate'), ('rod', 'Rod'), ('sheet', 'Sheet'), ('bar', 'Rectangular Bar')], string='Product Classification', default='plate')
     width_in = fields.Float(string='Width(in)',digits=[6, 4])
     thk_in = fields.Float(string='Thickness(in)',digits=[6, 4])
@@ -256,8 +256,8 @@ class StockMove(models.Model):
                     raise UserError(_('Please provide the quantity.'))
 
     def get_serial_barcode(self):
-        return self.env.ref('odx_product_custom_steel.action_report_serial_barcode_for_lot_picking').report_action(self)
-        # return self.env.ref('odx_product_custom_steel.action_report_serial_barcode_for_lot').report_action(self)
+        return self.env.ref('odx_sq_steel_customisation.action_report_serial_barcode_for_lot_picking').report_action(self)
+        # return self.env.ref('odx_sq_steel_customisation.action_report_serial_barcode_for_lot').report_action(self)
 
     def action_show_details(self):
         res = super(StockMove, self).action_show_details()

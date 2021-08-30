@@ -15,7 +15,7 @@ class ProductTemplate(models.Model):
     length_in = fields.Float(string='Length(in)',digits=[6, 4])
     length_mm = fields.Float(string='Length(mm)',digits=[6, 4])
     weight_lb = fields.Float(string='Weight(lb)',digits=[6, 4])
-    weight_mm = fields.Float(string='Weight(mm)',digits=[6, 4])
+    weight_mm = fields.Float(string='Weight(kg)',digits=[6, 4])
     od_in = fields.Float(string='OD(in)',digits=[6, 4])
     od_mm = fields.Float(string='OD(mm)',digits=[6, 4])
     product_classificaton = fields.Selection([('plate', 'Plate'), ('rod', 'Rod'), ('sheet', 'Sheet'), ('bar', 'Rectangular Bar')], string='Product Classification', default='plate')
@@ -26,6 +26,16 @@ class ProductTemplate(models.Model):
         for record in self:
             record.name = record.categ_id.name +' '+ record.product_classificaton.capitalize()
 
+    @api.onchange('categ_id','product_classificaton')
+    def _onchange_classification(self):
+        if self.product_classificaton == 'rod':
+            self.width_in=0
+            self.thk_in=0
+            self.cut_l_in=0
+        else:
+            self.length_in=0
+            self.weight_lb=0
+            self.od_in=0
     @api.onchange('width_in')
     def _onchange_width(self):
         self.width_mm = self.width_in * 25.4
@@ -44,7 +54,7 @@ class ProductTemplate(models.Model):
 
     @api.onchange('weight_lb')
     def _onchange_weight(self):
-        self.weight_mm = self.weight_lb * 25.4 
+        self.weight_mm = self.weight_lb * 0.45359237
 
     @api.onchange('od_in')
     def _onchange_od(self):

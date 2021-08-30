@@ -26,6 +26,8 @@
     'data': [
         'security/ir.model.access.csv',
         'data/sequence.xml',
+        'data/mail_template_sales.xml',
+        'report/report_changes.xml',
         'views/product.xml',
         'views/purchase_view.xml',
         'views/stock_move_line.xml',
@@ -34,6 +36,14 @@
         'views/sale_view.xml',
         'views/stock_picking_view.xml',
         'views/account_move.xml',
+        'views/sale_order_optional_ids.xml',
+        'views/portal_template.xml',
+        'views/sale_portal_template.xml',
         'wizard/purchase_line_wizard.xml',
+        'wizard/price_update_wizard.xml',
+        'wizard/options_sale_wizard.xml',
+        'wizard/import_offer_wizard.xml',
+        'report/barcode_picking.xml',
+        'report/sale_report_template_custom.xml',
     ],
 }

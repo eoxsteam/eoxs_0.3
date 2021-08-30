@@ -165,7 +165,8 @@
                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
                     <button style="float:right;margin-right:3px;" type="object"
                             name="action_production_wizard" class="oe_highlight" string="Produce"
-                            attrs="{'invisible': [('lot_id', '!=', False)]}"/>
+                            invisible="1"/>
+                            <!-- attrs="{'invisible': [('lot_id', '!=', False)]}"/> -->
                     <button style="float:right;margin-right:3px;" type="object"
                             name="line_duplicate" class="oe_highlight" string="Duplicate"
                             attrs="{'invisible': [('parent.state', '=', 'sale')]}"/>

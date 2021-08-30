@@ -150,7 +150,7 @@ class StockProductionLot(models.Model):
     length_in = fields.Float(string='Length(in)',digits=[6, 4])
     length_mm = fields.Float(string='Length(mm)',digits=[6, 4])
     weight_lb = fields.Float(string='Weight(lb)',digits=[6, 4])
-    weight_mm = fields.Float(string='Weight(mm)',digits=[6, 4])
+    weight_mm = fields.Float(string='Weight(kg)',digits=[6, 4])
     od_in = fields.Float(string='OD(in)',digits=[6, 4])
     od_mm = fields.Float(string='OD(mm)',digits=[6, 4])
 
@@ -267,7 +267,7 @@ class StockProductionLot(models.Model):
         }
 
     def get_serial_barcode(self):
-        return self.env.ref('odx_product_custom_steel.action_serial_barcode_generator_lot').report_action(self)
+        return self.env.ref('odx_sq_steel_customisation.action_serial_barcode_generator_lot').report_action(self)
 
     def set_to_draft(self):
         if self.state == 'confirm':
@@ -312,7 +312,7 @@ class StockProductionLot(models.Model):
 
     @api.onchange('weight_lb')
     def _onchange_weight(self):
-        self.weight_mm = self.weight_lb * 25.4 
+        self.weight_mm = self.weight_lb * 0.45359237 
 
     @api.onchange('od_in')
     def _onchange_od(self):

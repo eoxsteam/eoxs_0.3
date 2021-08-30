@@ -21,10 +21,11 @@
                 <xpath expr="//field[@name='product_id']" position="after">
                     <!--                    <field name="category_id"/>-->
                     <!-- <field name="sub_category_id"/> -->
-                    <field name="product_classificaton"/>
 
                 </xpath>
                 <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="category_id"/>
+                    <field name="product_classificaton"/>
                     <field name="stock_status"/>
                     <field name="material_type" invisible="1"/>
 
@@ -280,7 +281,7 @@
                                         <label for="length_in"/>
                                     </td>
                                     <td>
-                                        <field name="length_in" string="Length(IN)"/>
+                                        <field name="length_in" string="Length(IN)" attrs="{'readonly': [('state', '=', 'confirm')]}"/>
                                     </td>
                                     <td width="5%"></td>
                                     <td>

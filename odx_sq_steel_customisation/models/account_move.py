@@ -14,7 +14,7 @@ class AccountMoveLine(models.Model):
                 return {'domain': {
                     'lot_id': [('category_id', '=', self.category_id.id), ('stock_status', '=', 'available')]}}
 
-    category_id = fields.Many2one('product.category', string="Master")
+    category_id = fields.Many2one('product.category', string="Category")
     # sub_category_id = fields.Many2one('product.category', string="Sub Category",
     #                                   domain="[('parent_id', '=', category_id) or [] ] ")
     lot_id = fields.Many2one('stock.production.lot', string='Lot Number', domain=lambda self: self._domain_lot_id())
