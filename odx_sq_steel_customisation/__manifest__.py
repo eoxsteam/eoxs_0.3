@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','sale_management','purchase','stock','sale_order_lot_selection','stock_restrict_lot'],
+    'depends': ['base','sale_management','purchase','stock','sale_order_lot_selection','stock_restrict_lot','web'],
 
     # always loaded
     'data': [
@@ -45,5 +45,6 @@
         'wizard/import_offer_wizard.xml',
         'report/barcode_picking.xml',
         'report/sale_report_template_custom.xml',
+        'views/web_no_bubble.xml',
     ],
 }

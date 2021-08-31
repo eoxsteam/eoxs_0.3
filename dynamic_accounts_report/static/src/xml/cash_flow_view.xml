@@ -164,11 +164,11 @@
             </div>
             <br></br>
             <div class="sub_container_right"
-                 style="width:60%;height:3%;right:0px;top:0px;position: absolute;width:100%">
+                 style="width:50%;height:3%;right:0px;top:0px;position: absolute;">
                 <div class="" style="right:80x;">
 
                     <br></br>
-                    <div class="row" style="right:120px;top:0px;position: absolute;width:120;">
+                    <div class="row" style="right:120px;top:0px;position: absolute;width:45%;">
                         <div class="time_range" style="">
                             <a type="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <span class="fa fa-calendar" title="Dates" role="img" aria-label="Dates"></span>
@@ -196,7 +196,7 @@
                                 <span class="fa fa-filter"></span>
                                 Target Moves:
                             </a>
-                            <div class="dropdown-menu show" role="menu" style="margin-left:40%">
+                            <div class="dropdown-menu show" role="menu" style="margin-left:35%">
                                 <select id="entries" name="states[]" class="target_move">
                                     <div role="separator" class="dropdown-divider"></div>
                                     <div class="">
@@ -224,24 +224,24 @@
                         <!--                            <span id="post_res"></span>-->
                         <!--                        </div>-->
 
-                        <div class="search-levels">
-                            <a type="button" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="fa fa-book"></span>
-                                Level:
-                            </a>
-                            <div>
-                                <select class="dropdown-menu levels" id="levels" name="states[]"
-                                        style="margin-left:80%;width:30%">
-                                    <option value="very">Very Detailed</option>
-                                    <option value="summary">Summary</option>
-                                    <option value="consolidated">Consolidated</option>
-                                    <option value="detailed">Detailed</option>
+<!--                        <div class="search-levels">-->
+<!--                            <a type="button" class="dropdown-toggle" data-toggle="dropdown">-->
+<!--                                <span class="fa fa-book"></span>-->
+<!--                                Level:-->
+<!--                            </a>-->
+<!--                            <div>-->
+<!--                                <select class="dropdown-menu levels" id="levels" name="states[]"-->
+<!--                                        style="margin-left:80%;width:30%">-->
+<!--                                    <option value="very">Very Detailed</option>-->
+<!--                                    <option value="summary">Summary</option>-->
+<!--                                    <option value="consolidated">Consolidated</option>-->
+<!--                                    <option value="detailed">Detailed</option>-->
 
-                                </select>
-                                <span id="level_res"></span>
-                            </div>
+<!--                                </select>-->
+<!--                                <span id="level_res"></span>-->
+<!--                            </div>-->
 
-                        </div>
+<!--                        </div>-->
 
 
                     </div>

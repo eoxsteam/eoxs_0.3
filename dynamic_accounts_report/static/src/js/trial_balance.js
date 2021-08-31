@@ -100,7 +100,7 @@ odoo.define('dynamic_cash_flow_statements.trial', function (require) {
                     type: 'ir.actions.client',
                     name: 'GL View',
                     tag: 'g_l',
-                    target: 'new',
+                    target: 'current',
 
                     domain: [['account_ids','=', account_id]],
 

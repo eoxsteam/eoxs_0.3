@@ -305,7 +305,7 @@
                                 <span class="fa fa-filter"></span>
                                 Target Moves:
                             </a>
-                            <div class="dropdown-menu show" role="menu" style="margin-left:85%">
+                            <div class="dropdown-menu show" role="menu" style="margin-left:78%">
                                 <select id="entries" name="states[]" class="target_move">
                                     <div role="separator" class="dropdown-divider"></div>
                                     <div class="">

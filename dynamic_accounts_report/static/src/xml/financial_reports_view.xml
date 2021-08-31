@@ -117,11 +117,8 @@
                                     </td>
                                 </tr>
                             </t>
-
                         </t>
-
                     </tbody>
-
                 </table>
 
             </div>
@@ -270,18 +267,12 @@
                                         <option value="All">All Entries</option>
                                     </div>
                                 </select>
-
                             </div>
-
                             <span id="post_res"></span>
-
                         </div>
 
-
                     </div>
-
                 </div>
-
 
                 <div style="">
                     <button type="button" id="apply_filter" class="btn btn-primary"
@@ -292,29 +283,6 @@
                 </div>
             </div>
             <br/>
-
-            <!--                <div class="sub_container_right">-->
-
-            <!--                    <div class="search-Target-move">-->
-            <!--                        <a type="button" class="dropdown-toggle" data-toggle="dropdown">-->
-            <!--                            <span class="fa fa-filter"></span>-->
-            <!--                            Target Moves:-->
-            <!--                        </a>-->
-            <!--                        <div class="dropdown-menu show" role="menu">-->
-            <!--                            <select id="entries" name="states[]" class="target_move">-->
-            <!--                                <div role="separator" class="dropdown-divider"></div>-->
-            <!--                                <div class="">-->
-            <!--                                    <option value="Posted">Posted Entries</option>-->
-            <!--                                </div>-->
-            <!--                                <div class="">-->
-            <!--                                    <option value="All">All Entries</option>-->
-            <!--                                </div>-->
-            <!--                            </select>-->
-
-            <!--                        </div>-->
-            <!--                        <span id="post_res"></span>-->
-            <!--                    </div>-->
-            <!--                </div>-->
 
         </div>
     </t>

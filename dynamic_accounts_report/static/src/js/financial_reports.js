@@ -113,7 +113,7 @@ odoo.define('dynamic_accounts_report.financial_reports', function (require) {
                     type: 'ir.actions.client',
                     name: 'GL View',
                     tag: 'g_l',
-                    target: 'new',
+                    target: 'current',
                     domain: [['account_ids','=', account_id]],
 
                 }
