@@ -131,7 +131,8 @@
 	                    </div>
 	                </div>
 	            </div>
-                <h2 id="web_theme_extension_title">Backend Theme Extensions</h2>
+	            <!-- commented by Aj -->
+<!--            <h2 id="web_theme_extension_title">Backend Theme Extensions</h2>
             	<div class="row mt16 o_settings_container" name="web_theme_extension">
 	                <div class="col-12 col-lg-6 o_setting_box">
 		                <div class="o_setting_left_pane">
@@ -177,7 +178,7 @@
 		                    </div>
 		                </div>
 		            </div>
-	            </div>
+	            </div> -->
 	        </div>
 	    </field>
 	</record>
